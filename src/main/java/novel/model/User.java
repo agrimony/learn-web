@@ -1,13 +1,13 @@
-package codedata.model;
+package novel.model;
 
 public class User {
     private Integer id;
 
     private String name;
 
-    private Integer age;
+    private String password;
 
-    private Integer sales;
+    private Integer age;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,12 @@ public class User {
         this.age = age;
     }
 
-    public Integer getSales() {
-        return sales;
+
+    public String getPassword() {
+        return password;
     }
 
-    public void setSales(Integer sales) {
-        this.sales = sales;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

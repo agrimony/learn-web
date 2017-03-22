@@ -49,11 +49,28 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-        <property name="mapperLocations" value="classpath:codedata/dao/mapping/*.xml" />
+        <property name="mapperLocations" value="classpath:novel/dao/mapping/*.xml" />
+        <!-- other configuration -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!-- config params as the following -->
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="codedata.dao" />
+        <property name="basePackage" value="novel.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
@@ -82,7 +99,7 @@
     <!-- Spring aop事务管理 -->
     <aop:config>
         <aop:pointcut id="transactionPointcut"
-                      expression="execution(* codedata.service..*Impl.*(..))" />
+                      expression="execution(* novel.service..*Impl.*(..))" />
         <aop:advisor pointcut-ref="transactionPointcut"
                      advice-ref="transactionAdvice" />
     </aop:config>

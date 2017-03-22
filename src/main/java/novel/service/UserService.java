@@ -1,8 +1,6 @@
-package codedata.service;
+package novel.service;
 
-import codedata.model.User;
-
-import java.util.List;
+import novel.model.User;
 
 /**
  * Created by hou on 10/21/16.

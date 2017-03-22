@@ -1,7 +1,7 @@
-package codedata.controller;
+package novel.controller;
 
-import codedata.model.User;
-import codedata.service.UserService;
+import novel.model.User;
+import novel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

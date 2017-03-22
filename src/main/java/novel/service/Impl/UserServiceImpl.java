@@ -1,13 +1,11 @@
-package codedata.service.Impl;
+package novel.service.Impl;
 
-import codedata.dao.UserMapper;
-import codedata.model.User;
-import codedata.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import novel.dao.UserMapper;
+import novel.model.User;
+import novel.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Created by hou on 10/21/16.

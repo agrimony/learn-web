@@ -1,9 +1,6 @@
-package codedata.dao;
+package novel.dao;
 
-import codedata.model.User;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
+import novel.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);

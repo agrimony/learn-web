@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="novel.dao.CrawelArticleMapper" >
+  <resultMap id="BaseResultMap" type="novel.model.CrawelArticle" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="articleLink" property="articlelink" jdbcType="VARCHAR" />
+    <result column="articleTitle" property="articletitle" jdbcType="VARCHAR" />
+    <result column="bookId" property="bookid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="insertTime" property="inserttime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, articleLink, articleTitle, bookId, status, insertTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from crawel_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectArticlesByBookId" resultMap="BaseResultMap" resultType="java.util.List" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from crawel_article
+    where bookId = #{bookId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from crawel_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="novel.model.CrawelArticle" >
+    insert into crawel_article (id, articleLink, articleTitle, 
+      bookId, status, insertTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{articlelink,jdbcType=VARCHAR}, #{articletitle,jdbcType=VARCHAR}, 
+      #{bookid,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{inserttime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="novel.model.CrawelArticle" >
+    insert into crawel_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="articlelink != null" >
+        articleLink,
+      </if>
+      <if test="articletitle != null" >
+        articleTitle,
+      </if>
+      <if test="bookid != null" >
+        bookId,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="inserttime != null" >
+        insertTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="articlelink != null" >
+        #{articlelink,jdbcType=VARCHAR},
+      </if>
+      <if test="articletitle != null" >
+        #{articletitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bookid != null" >
+        #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="novel.model.CrawelArticle" >
+    update crawel_article
+    <set >
+      <if test="articlelink != null" >
+        articleLink = #{articlelink,jdbcType=VARCHAR},
+      </if>
+      <if test="articletitle != null" >
+        articleTitle = #{articletitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bookid != null" >
+        bookId = #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="inserttime != null" >
+        insertTime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="novel.model.CrawelArticle" >
+    update crawel_article
+    set articleLink = #{articlelink,jdbcType=VARCHAR},
+      articleTitle = #{articletitle,jdbcType=VARCHAR},
+      bookId = #{bookid,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      insertTime = #{inserttime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateCrawelArticleStatus" parameterType="novel.model.CrawelArticle">
+    UPDATE crawel_article
+     SET status = #{status,jdbcType=TINYINT}
+     WHERE id= #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
