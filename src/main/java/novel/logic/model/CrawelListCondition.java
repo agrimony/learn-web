@@ -9,7 +9,7 @@ public class CrawelListCondition {
     private String url;
     private String tagXPath;
     private String[] rules;
-private Map<String,String> tags;
+    private Map<String,String> tags;
 
     public String getUrl() {
         return url;
